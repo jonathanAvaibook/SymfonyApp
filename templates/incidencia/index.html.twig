@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Task index{% endblock %}
+{% block body %}
+    <h1>Incidencias</h1>
+
+{{ form(formSearch) }}
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Titulo</th>
+            <th>Descripcion</th>
+            <th>Fecha creacion</th>
+            <th>Resuelta</th>
+            <th>Fecha resolucion</th>
+            <th>Categoria</th>
+            <th>Tags</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for incidencia in incidencias %}
+            <tr>
+                <td>{{ incidencia.id }}</td>
+                <td>{{ incidencia.titulo }}</td>
+                <td>{{ incidencia.descripcion }}</td>
+                <td>{{ incidencia.fechaCreacion is not null ? incidencia.fechaCreacion | americaDate : '' }}</td>
+                <td>{{ incidencia.resuelta }}</td>
+                <td>{{ incidencia.fechaResolucion is not null ? incidencia.fechaResolucion | americaDate : '' }}</td>
+                <td>{{ incidencia.categoria }}</td>
+                <td>{{ incidencia.tags|join(',') }}</td>
+                <td>
+                    <a href="{{ path('incidencia_show', {'id': incidencia.id}) }}">show</a>
+                    <a href="{{ path('incidencia_edit', {'id': incidencia.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">No hay incidencias</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('incidencia_new') }}">Crear nueva</a>
+{% endblock %}

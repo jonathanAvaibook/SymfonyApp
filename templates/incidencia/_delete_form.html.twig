@@ -1,0 +1,12 @@
+<form method="get" name="formulario" action="{{ path('incidencia_delete', {'id': incidencia.id}) }}">
+    <input type="hidden" name="_method" value="DELETE">
+
+
+    <a href="javascript:enviar_formulario()">Borrar</a>
+
+    <script>
+        function enviar_formulario(){
+            document.formulario.submit()
+        }
+    </script>
+</form>

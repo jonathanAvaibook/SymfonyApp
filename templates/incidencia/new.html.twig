@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Task{% endblock %}
+
+{% block body %}
+    <h1>Crear nueva Inci</h1>
+
+    {{ include('incidencia/_form.html.twig') }}
+
+    <a href="{{ path('incidencia_index') }}">back to list</a>
+{% endblock %}
